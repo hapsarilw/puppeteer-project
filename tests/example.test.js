@@ -8,14 +8,9 @@ describe('My First Puppeteer Test', () => {
             devtools: false,
         })
         const page = await browser.newPage()
-        await page.goto('https://example.com/')
-        await page.waitForSelector('h1')
-        await page.goto('https://dev.to/')
-        await page.waitForSelector('#topbar')
-        await page.goBack()
-        await page.waitForSelector('h1')
-        await page.goForward()
-        await page.waitForSelector('#topbar')
+        await page.goto('https://devexpress.github.io/testcafe/example/')
+        await page.type('#developer-name', 'Mike', {delay: 0 })
+        await page.waitFor(5000)
         await browser.close()
     }).timeout(10000);
 })
