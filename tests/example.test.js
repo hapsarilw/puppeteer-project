@@ -12,10 +12,14 @@ describe('My First Puppeteer Test', () => {
         await page.type('#developer-name', 'Mike', { delay: 0 })
         await page.click('#tried-test-cafe', { clickCount: 1 })
         await page.select('#preferred-interface', 'JavaScript API')
+        const message = 'Lets fill that message with some text'
+        await page.type('#comments', message)
+        await page.click('#submit-button')
+        await page.waitForSelector('.result-content')
         // await page.waitFor(5000)
         // await browser.close()
     }).timeout(10000);
 })
 
 
-     
+      
