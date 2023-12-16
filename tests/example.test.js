@@ -11,8 +11,12 @@ describe('My First Puppeteer Test', () => {
         await page.goto('https://example.com/')
         const title = await page.title('')
         const url = await page.url()
+        // $ : single elements
         const text = await page.$eval('h1', element => element.textContent)
+        // $$ : multiple elemetnts
+        const count = await page.$$eval('p', element => element.length)
         console.log('Text in he H1: ' + text)
+        console.log('Number of P tags on the page:' + count)
         await browser.close()
     }).timeout(10000);
 })
