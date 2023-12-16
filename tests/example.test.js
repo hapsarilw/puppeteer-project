@@ -8,12 +8,11 @@ describe('My First Puppeteer Test', () => {
             devtools: false,
         })
         const page = await browser.newPage()
-        await page.goto('https://devexpress.github.io/testcafe/example/')
+        await page.goto('https://example.com/')
         const title = await page.title('')
         const url = await page.url()
-
-        console.log('TITLE: ' + title )
-        console.log('URL:' + url)
+        const text = await page.$eval('h1', element => element.textContent)
+        console.log('Text in he H1: ' + text)
         await browser.close()
     }).timeout(10000);
 })
