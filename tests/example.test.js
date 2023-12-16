@@ -9,6 +9,11 @@ describe('My First Puppeteer Test', () => {
             devtools: false,
         })
         const page = await browser.newPage()
+
+        // Default : 30s timeout
+        await page.setDefaultTimeout(10000)
+        await page.setDefaultNavigationTimeout(20000)
+
         await page.goto('https://example.com/')
         const title = await page.title('')
         const url = await page.url()
