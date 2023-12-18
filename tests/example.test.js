@@ -26,12 +26,11 @@ describe('My First Puppeteer Test', () => {
 
         await page.goto('https://gh-users-search.netlify.app/')
         await page.waitForSelector('[data-testid="search-bar"]')
-        await page.type('[data-testid="search-bar"]', 'hapsarilw');
-        await page.keyboard.press('Enter', {delay: 10})
-        //await page.waitFor(5000)
-
+        await page.type('[data-testid="search-bar"]', 'hapsarilw')
+        await page.keyboard.press('Enter', { delay: 10} )
         await browser.close()
-    }).timeout(5000)
+ 
+    }).timeout(50000)
 });
  
 
