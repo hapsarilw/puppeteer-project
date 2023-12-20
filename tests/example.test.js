@@ -9,8 +9,8 @@ describe('My First Puppeteer Test', () => {
             devtools: false,
         })
         const page = await browser.newPage()
-        //await page.setDefaultTimeout(1000)
-        //await page.setDefaultNavigationTimeout(40000)
+        await page.setDefaultTimeout(10000)
+        await page.setDefaultNavigationTimeout(20000)
 
         await page.goto('http://example.com/')
         await page.waitForXPath('//h1')
@@ -28,7 +28,13 @@ describe('My First Puppeteer Test', () => {
         await page.goto('http://zero.webappsecurity.com/')
         await page.waitForSelector('#signin_button')
         await page.click('#signin_button')
-        await page.waitFor(() => !document.querySelector('#signin_button'))
+        /*
+            How to check if the element is no longer exist
+            1. .waitFor : invoke the callback function (!document.querySelector())
+            2. .waitForSelector : then specify if hidden === true
+        */
+        // Not working 
+        // await page.waitFor(() => !document.querySelector('#signin_button'))
         await page.waitForSelector('#signin_button', {
             hidden: true,
             timeout: 3000,
