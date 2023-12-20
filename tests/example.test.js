@@ -9,8 +9,8 @@ describe('My First Puppeteer Test', () => {
             devtools: false,
         })
         const page = await browser.newPage()
-        await page.setDefaultTimeout(1000)
-        await page.setDefaultNavigationTimeout(20000)
+        //await page.setDefaultTimeout(1000)
+        //await page.setDefaultNavigationTimeout(40000)
 
         await page.goto('http://example.com/')
         await page.waitForXPath('//h1')
@@ -24,13 +24,17 @@ describe('My First Puppeteer Test', () => {
         expect(text).to.be.a('string', 'Example Domain')
         // expect(count).to.equal(2)
 
-        await page.goto('https://gh-users-search.netlify.app/')
-        await page.waitForSelector('[data-testid="search-bar"]')
-        await page.type('[data-testid="search-bar"]', 'hapsarilw')
-        await page.keyboard.press('Enter', { delay: 10} )
+        // Still get error
+        await page.goto('http://zero.webappsecurity.com/')
+        await page.waitForSelector('#signin_button')
+        await page.click('#signin_button')
+        await page.waitFor(() => !document.querySelector('#signin_button'))
+        await page.waitForSelector('#signin_button', {
+            hidden: true,
+            timeout: 3000,
+        })
         await browser.close()
- 
-    }).timeout(50000)
+    })
 });
  
 
