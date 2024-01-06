@@ -37,15 +37,19 @@ describe('My First Puppeteer Test', () => {
         afterEach: Runs after each test step
         Example: you want to reset or prepare some state before / after each those test step
     */
-	afterEach(async function () {})
+	afterEach(async function () {
+
+	})
 
 	it('should launch the browser', async function () {
 		await page.goto('http://example.com/')
 		await page.waitForXPath('//h1')
 		const title = await page.title()
 		const url = await page.url()
+		// const text = await getText(page, 'h1')
+		// const count = await getCount(page, 'p')
 		const text = await getText(page, 'h1')
-		const count = await getCount(page, 'p')
+		const count = await getCount(page, 'p') 
 
 		expect(title).to.be.a('string', 'Example Domain')
 		expect(url).to.include('example.com')
@@ -57,9 +61,10 @@ describe('My First Puppeteer Test', () => {
 		// await page.waitForSelector('#signin_button')
 		// await page.click('#signin_button')
 		await click(page, '#signin_button')
-		await page.waitFor(() => !document.querySelector('#signin_button'))
+		// await page.waitFor(() => !document.querySelector('#signin_button'))
 		await page.waitForSelector('#signin_button', {
 			hidden: true,
+			timeout: 3000
 		})
 	})
 })
