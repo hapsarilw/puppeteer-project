@@ -2,9 +2,7 @@ const { beforeEach } = require('mocha')
 const puppeteer = require('puppeteer')
 const expect = require('chai').expect
 
-const { click } = require('../lib/helpers')
-const { getText } = require('../lib/helpers')
-const { getCount } = require('../lib/helpers')
+const { click, getText, getCount, shouldNotExist } = require('../lib/helpers')
 
 describe('My First Puppeteer Test', () => {
 	let browser
@@ -46,8 +44,6 @@ describe('My First Puppeteer Test', () => {
 		await page.waitForXPath('//h1')
 		const title = await page.title()
 		const url = await page.url()
-		// const text = await getText(page, 'h1')
-		// const count = await getCount(page, 'p')
 		const text = await getText(page, 'h1')
 		const count = await getCount(page, 'p') 
 
@@ -58,13 +54,8 @@ describe('My First Puppeteer Test', () => {
 		
 
 		await page.goto('http://zero.webappsecurity.com/')
-		// await page.waitForSelector('#signin_button')
-		// await page.click('#signin_button')
 		await click(page, '#signin_button')
-		// await page.waitFor(() => !document.querySelector('#signin_button'))
-		await page.waitForSelector('#signin_button', {
-			hidden: true,
-			timeout: 3000
-		})
+		await page.waitForTimeout(3000)
+		await shouldNotExist(page, '#sigin_button')
 	})
 })
